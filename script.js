@@ -15,8 +15,8 @@ class Character{
             x:0,
             y:1
         }
-        this.width=60;
-        this.height=120;
+        this.width=50;
+        this.height=100;
     }
 
     draw(){
@@ -28,7 +28,7 @@ class Character{
         this.position.x +=this.speed.x;
         this.position.y +=this.speed.y;
 
-        if(this.position.y+this.height >= canvas.height){
+        if(this.position.y+this.height >= canvas.height-15){
             this.speed.y = 0;
         }
         else{
@@ -37,7 +37,7 @@ class Character{
     }
 }
 
-player = new Character({x:0,y:-20})
+player = new Character({x:0,y:-30})
 
 const keys={
     right:{
