@@ -1,9 +1,10 @@
 const canvas = document.querySelector("canvas")
 const c = canvas.getContext('2d');
 const chr = document.querySelector("#chr")
+const bg = document.querySelector("#bg")
 
-canvas.height = innerHeight;
-canvas.width = innerWidth;
+canvas.height = innerHeight-2;
+canvas.width = innerWidth-2;
 
 const g=1;
 
@@ -14,8 +15,8 @@ class Character{
             x:0,
             y:1
         }
-        this.width=80;
-        this.height=150;
+        this.width=60;
+        this.height=120;
     }
 
     draw(){
@@ -36,7 +37,7 @@ class Character{
     }
 }
 
-player = new Character({x:0,y:0})
+player = new Character({x:0,y:-20})
 
 const keys={
     right:{
@@ -56,7 +57,6 @@ const keys={
 
 function animate(){
     window.requestAnimationFrame(animate)
-
     c.clearRect(0,0,canvas.width,canvas.height)
 
     player.update();
