@@ -3,7 +3,7 @@ const c = canvas.getContext('2d');
 const chr = document.querySelector("#chr")
 const bg = document.querySelector("#bg")
 const plt1 = document.querySelector("#plt1")
-const plts = document.querySelector("#plts")
+const plts = document.querySelector("#plth")
 
 canvas.height = innerHeight-2;
 canvas.width = innerWidth-2;
@@ -47,13 +47,12 @@ class platform{
         this.width = 400;
     }
     draw(){
-        c.fillStyle = 'red'
-        c.fillRect(this.position.x,this.position.y,this.width,this.height)
+        c.drawImage(plts,this.position.x,this.position.y,this.width,this.height)
     }    
 }
 
 const player = new Character({x:0,y:0})
-const platform1 = new platform({x:200,y:300})
+const platforms = [new platform({x:200,y:300}),new platform({x:600,y:500})]
 
 const keys={
     right:{
@@ -76,7 +75,9 @@ function animate(){
     c.clearRect(0,0,canvas.width,canvas.height)
 
     player.update();
-    platform1.draw()
+    platforms.forEach(platform => {
+        platform.draw();
+    });
 
     if(keys.right.pressed == true){
         player.speed.x = 10;
@@ -87,15 +88,15 @@ function animate(){
     if(keys.up.pressed){
         player.speed.y = -10;
     }
-    if (player.position.x + player.width > platform1.position.x &&
-  player.position.x < platform1.position.x + platform1.width &&
-  player.position.y + player.height <= platform1.position.y &&
-  player.position.y + player.height + player.speed.y >= platform1.position.y) {
+    platforms.forEach(platform => {
+    if (player.position.x + player.width > platform.position.x &&
+  player.position.x < platform.position.x + platform.width &&
+  player.position.y + player.height <= platform.position.y &&
+  player.position.y + player.height + player.speed.y >= platform.position.y) {
   player.speed.y = 0;
-  player.position.y = platform1.position.y - player.height;
+  player.position.y = platform.position.y - player.height;
+}})
 }
-}
-
 
 
 animate()
