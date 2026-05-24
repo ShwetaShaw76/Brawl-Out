@@ -42,16 +42,18 @@ class Character{
 
 class platform{
     constructor(position){
-        this.position = position
-        this.height = 200;
-        this.width = 350;
+        this.position = position;
+        this.height = 50;
+        this.width = 400;
     }
     draw(){
-        c.fillRect(0,0,this.width,this.height)
+        c.fillStyle = 'red'
+        c.fillRect(this.position.x,this.position.y,this.width,this.height)
     }    
 }
 
-player = new Character({x:0,y:-30})
+const player = new Character({x:0,y:0})
+const platform1 = new platform({x:200,y:300})
 
 const keys={
     right:{
@@ -74,6 +76,7 @@ function animate(){
     c.clearRect(0,0,canvas.width,canvas.height)
 
     player.update();
+    platform1.draw()
 
     if(keys.right.pressed == true){
         player.speed.x = 10;
@@ -84,7 +87,13 @@ function animate(){
     if(keys.up.pressed){
         player.speed.y = -10;
     }
-    
+    if (player.position.x + player.width > platform1.position.x &&
+  player.position.x < platform1.position.x + platform1.width &&
+  player.position.y + player.height <= platform1.position.y &&
+  player.position.y + player.height + player.speed.y >= platform1.position.y) {
+  player.speed.y = 0;
+  player.position.y = platform1.position.y - player.height;
+}
 }
 
 
