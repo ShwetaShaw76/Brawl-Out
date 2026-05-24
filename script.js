@@ -61,8 +61,7 @@ const keys={
         pressed:false
     },
     up:{
-        pressed:false,
-        locked:false
+        pressed:false
     },
     down:{
         pressed:false
@@ -77,16 +76,15 @@ function animate(){
     player.update();
 
     if(keys.right.pressed == true){
-        player.speed.x = 5;
+        player.speed.x = 10;
     } 
     else if(keys.left.pressed == true){
-        player.speed.x = -5
+        player.speed.x = -10
     }else player.speed.x = 0;
-    // Inside your animate() function:
-if (keys.up.pressed && player.speed.y === 0) { 
-    player.speed.y -= 15; 
-    keys.up.pressed = false;
-}
+    if(keys.up.pressed){
+        player.speed.y = -10;
+    }
+    
 }
 
 
@@ -105,7 +103,6 @@ addEventListener('keydown',({keyCode})=>{
             break;
         case 38:
             keys.up.pressed = true;
-            keys.up.locked = true;
             break;
         case 40:
             break;
@@ -124,7 +121,6 @@ addEventListener('keyup',({keyCode})=>{
             break;
         case 38:
             keys.up.pressed = false
-            keys.up.locked = false;
             break;
         case 40:
             break;
