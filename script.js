@@ -4,6 +4,8 @@ const chr = document.querySelector("#chr")
 const bg = document.querySelector("#bg")
 const plt1 = document.querySelector("#plt1")
 const plts = document.querySelector("#plth")
+const wall = document.querySelector("#wall")
+const ladder = document.querySelector("#ladder")
 
 canvas.height = innerHeight-2;
 canvas.width = innerWidth-2;
@@ -51,9 +53,34 @@ class platform{
     }    
 }
 
+class wallv{
+    constructor(position){
+        this.position = position;
+        this.height = 400;
+        this.width = 100;
+    }
+
+    draw(){
+        c.drawImage(wall,this.position.x,this.position.y,this.width,this.height)
+    }
+}
+
+class ladderv{
+    constructor(position){
+        this.position = position;
+        this.height = 400;
+        this.width = 100;
+    }
+
+    draw(){
+        c.drawImage(ladder,this.position.x,this.position.y,this.width,this.height)
+    }
+}
+
 const player = new Character({x:0,y:0})
 const platforms = [new platform({x:200,y:300}),new platform({x:600,y:500})]
-
+const walls = [new wallv({x:400,y:350})]
+const ladders = [new ladderv({x:1200,y:350})]
 const keys={
     right:{
         pressed:false
@@ -78,6 +105,12 @@ function animate(){
     platforms.forEach(platform => {
         platform.draw();
     });
+    walls.forEach(wall =>{
+        wall.draw();
+    })
+    ladders.forEach(ladder=>{
+        ladder.draw();
+    })
 
     if(keys.right.pressed == true){
         player.speed.x = 10;
@@ -96,6 +129,17 @@ function animate(){
   player.speed.y = 0;
   player.position.y = platform.position.y - player.height;
 }})
+walls.forEach(wall => {
+    if(player.position.x + player.width > wall.position.x &&
+        player.position.x < wall.position.x + wall.width &&
+        player.position.y + player.height > wall.position.y &&
+        player.position.y < wall.position.y + wall.height
+    )
+    if(player.speed.x > 0){
+        player.speed.x = 0;
+        player.position.x = wall.position.x - player.width;
+    }
+})
 }
 
 
