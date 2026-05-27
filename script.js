@@ -6,11 +6,27 @@ const plt1 = document.querySelector("#plt1")
 const plts = document.querySelector("#plth")
 const wall = document.querySelector("#wall")
 const ladder = document.querySelector("#ladder")
+const walk1 = document.querySelector("#walk1")
+const walkRev = document.querySelector("#walkRev")
+const climb = document.querySelector("#Climb")
+const flag = document.querySelector("#flag")
+let win = false; 
 
 canvas.height = innerHeight-2;
 canvas.width = innerWidth-2;
 
-const g=1;
+let g=1;
+
+class Flag{
+    constructor(position){
+        this.position = position;
+        this.height =100;
+        this.width = 50;
+    }
+    draw(){
+        c.drawImage(flag,this.position.x,this.position.y,this.width,this.height)
+    }
+}
 
 class Character{
     constructor(position){
@@ -23,18 +39,17 @@ class Character{
         this.height=100;
     }
 
-    draw(){
-        c.drawImage(chr,this.position.x,this.position.y,this.width,this.height)
+    draw(image){
+        c.drawImage(image,this.position.x,this.position.y,this.width,this.height)
     }
 
-    update(){
-        this.draw();
+    update(image){
+        this.draw(image);
         this.position.x +=this.speed.x;
         this.position.y +=this.speed.y;
 
         if(this.position.y+this.height >= canvas.height-15){
             this.speed.y = 0;
-            keys.up.locked = false;
         }
         else{
             this.speed.y += g;
@@ -77,10 +92,12 @@ class ladderv{
     }
 }
 
-const player = new Character({x:0,y:0})
-const platforms = [new platform({x:200,y:300}),new platform({x:600,y:500})]
-const walls = [new wallv({x:400,y:350})]
-const ladders = [new ladderv({x:1200,y:350})]
+const player = new Character({x:0,y:500})
+const platforms = [new platform({x:150,y:260}),new platform({x:600,y:500}),new platform({x:0,y:window.innerHeight-50}),new platform({x:800,y:80}),new platform({x:window.innerWidth-250,y:window.innerHeight-50})]
+const walls = [new wallv({x:1200,y:350})]
+const ladders = [new ladderv({x:250,y:280}),new ladderv({x:850,y:platforms[2].position.y-580})]
+const flag1 = new Flag({x:window.innerWidth-60,y:window.innerHeight-150})
+
 const keys={
     right:{
         pressed:false
@@ -101,10 +118,7 @@ function animate(){
     window.requestAnimationFrame(animate)
     c.clearRect(0,0,canvas.width,canvas.height)
 
-    player.update();
-    platforms.forEach(platform => {
-        platform.draw();
-    });
+    flag1.draw();
     walls.forEach(wall =>{
         wall.draw();
     })
@@ -112,19 +126,24 @@ function animate(){
         ladder.draw();
     })
 
+    platforms.forEach(platform => {
+        platform.draw();
+    });
+    player.update(chr);
+    
+
     if(keys.right.pressed == true){
-        player.speed.x = 10;
+        player.speed.x = 5;
+        player.update(walk1);
     } 
     else if(keys.left.pressed == true){
-        player.speed.x = -10
+        player.speed.x = -5
+        player.update(walkRev);
     }else player.speed.x = 0;
-    if(keys.up.pressed){
-        player.speed.y = -10;
-    }
     platforms.forEach(platform => {
     if (player.position.x + player.width > platform.position.x &&
   player.position.x < platform.position.x + platform.width &&
-  player.position.y + player.height <= platform.position.y &&
+  player.position.y + player.height <= platform.position.y + 20 &&
   player.position.y + player.height + player.speed.y >= platform.position.y) {
   player.speed.y = 0;
   player.position.y = platform.position.y - player.height;
@@ -139,7 +158,41 @@ walls.forEach(wall => {
         player.speed.x = 0;
         player.position.x = wall.position.x - player.width;
     }
+    else if(player.position.x + player.width > wall.position.x + wall.width &&
+        player.position.x < wall.position.x + wall.width &&
+        player.position.y + player.height > wall.position.y &&
+        player.position.y < wall.position.y + wall.height
+    )
+    if(player.speed.x < 0){
+        player.speed.x = 0;
+        player.position.x = wall.position.x + wall.width;
+    }
 })
+    for(let i = 0; i < ladders.length; i++){
+    if(player.position.x + player.width > ladders[i].position.x &&
+        player.position.x < ladders[i].position.x + ladders[i].width &&
+        player.position.y + player.height > ladders[i].position.y &&
+        player.position.y < ladders[i].position.y + ladders[i].height
+    ){
+        if(keys.up.pressed){
+            player.speed.y = -5;
+            player.update(climb);
+            player.position.x = ladders[i].position.x+25;
+        }
+    }
+}
+    if(win == false){
+    if(player.position.x >= flag1.position.x && player.position.y >= flag1.position.y){
+        window.alert("You win!")
+        win = true;
+        window.location.reload();
+    }
+    // else if(player.position.y >= canvas.height-100){
+    //     window.alert("you lose!!")
+    //     win = true;
+    //     window.location.reload();
+    // }
+    }
 }
 
 
@@ -159,6 +212,7 @@ addEventListener('keydown',({keyCode})=>{
             keys.up.pressed = true;
             break;
         case 40:
+            keys.down.pressed = true;
             break;
     }
 })
