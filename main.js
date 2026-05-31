@@ -5,6 +5,7 @@ let buttonImg = document.querySelector('#button')
 let bgm = document.querySelector('#bgm')
 let musicOn = document.querySelector('#musicOn')
 let musicOff = document.querySelector('#musicOff')
+let git = document.querySelector('#git')
 
 canvas.height = innerHeight-1;
 canvas.width = innerWidth;
@@ -63,6 +64,7 @@ const buttons = {
 buttons.start.draw();
 buttons.quit.draw();
 buttons.git.draw();
+c.drawImage(git,buttons.git.position.x+13,buttons.git.position.y,100,90)
 
 const musicButton = new MusicButton({x:canvas.width/2-150,y:canvas.height/2+90});
 musicButton.draw();
@@ -85,5 +87,8 @@ canvas.addEventListener('click',function(event){
     }
     if(x >= musicButton.position.x && x <= musicButton.position.x + musicButton.width && y >= musicButton.position.y && y <= musicButton.position.y + musicButton.height){
         musicButton.onClick();
+    }
+    if(x >= buttons.git.position.x && x<= buttons.git.position.x + buttons.git.width && y>= buttons.git.position.y && y <= buttons.git.position.y + buttons.git.height){
+        window.open("https://github.com/ShwetaShaw76/Brawl-Out","_blank");
     }
 })
