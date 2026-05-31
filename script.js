@@ -15,7 +15,7 @@ let win = false;
 canvas.height = innerHeight-2;
 canvas.width = innerWidth-2;
 
-let g=1;
+let g=0.5;
 
 class Flag{
     constructor(position){
@@ -174,11 +174,21 @@ walls.forEach(wall => {
         player.position.y + player.height > ladders[i].position.y &&
         player.position.y < ladders[i].position.y + ladders[i].height
     ){
+        player.speed.y = 0;
+        g=0;
         if(keys.up.pressed){
             player.speed.y = -5;
             player.update(climb);
             player.position.x = ladders[i].position.x+25;
         }
+        if(keys.down.pressed){
+            player.speed.y=5;
+            player.update(climb);
+            player.position.x = ladders[i].position.x+25;
+        }
+    }
+    else{
+        g=0.5;
     }
 }
     if(win == false){
@@ -231,6 +241,7 @@ addEventListener('keyup',({keyCode})=>{
             keys.up.pressed = false
             break;
         case 40:
+            keys.down.pressed = false;
             break;
     }
 })

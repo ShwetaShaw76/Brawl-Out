@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brawl-Out</title>
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            height:100vh;
+            width:100vw;
+        }
+        canvas{
+            background:url(images/plain_bg.png);
+        }
+    </style>
 </head>
-<body style="margin:0;padding:0;height: 100vh;width: 100vw;">
-    <canvas style="background:url(images/plain_bg.png);"></canvas>
-    <img src="images/character_still.png" alt="" style="display:none; z-index:5;" id="chr">
-    <img src="images/platform_1.png" alt="" style="display:none; z-index:2;" id="plt1">
-    <img src="images/platform.png" alt="" style="display: none;  z-index:2;" id="plth">
-    <img src="images/wallh.png" alt="" style="display: none;  z-index:2;" id="wall">
-    <img src="images/ladder.png" alt="" style="display: none;  z-index:2;" id="ladder"> 
-    <img src="images/player_walk1.png" alt="" style="display: none;  z-index:2;" id="walk1">
-    <img src="images/player_walk2.png" alt="" style="display: none;  z-index:2;" id="walk2">
-    <img src="images/player_walk3.png" alt="" style="display: none;  z-index:2;" id="walk3">
-    <img src="images/player_walkRev.png" alt="" style="display: none;  z-index:2;" id="walkRev">
-    <img src="images/player_climbing.png" alt="" style="display: none;  z-index:2;" id="Climb">
-    <img src="images/flag.png" alt="" style="display: none;  z-index:2;" id="flag">
-    <script src="script.js"></script>
+<body>
+    <canvas></canvas>
+    <img src="images/menu_board.png" id="menuBoard" style="display:none;">
+    <img src="images/button.png" id="button" style="display:none;">
+    <script src="main.js"></script>
 </body>
 </html>
