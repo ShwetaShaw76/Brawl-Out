@@ -102,6 +102,9 @@ canvas.addEventListener('click',function(event){
     if(x >= buttons.start.position.x && x <= buttons.start.position.x + buttons.start.width && y >= buttons.start.position.y && y <= buttons.start.position.y + buttons.start.height){
         window.location.href = "level1.html";
     }
+    if(x >= buttons.quit.position.x && x <= buttons.quit.position.x + buttons.quit.width && y >= buttons.quit.position.y && y <= buttons.quit.position.y + buttons.quit.height){
+        window.close();
+    }
     if(x >= musicButton.position.x && x <= musicButton.position.x + musicButton.width && y >= musicButton.position.y && y <= musicButton.position.y + musicButton.height){
         musicButton.onClick();
     }
