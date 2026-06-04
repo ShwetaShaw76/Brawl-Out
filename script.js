@@ -10,6 +10,11 @@ const walk1 = document.querySelector("#walk1")
 const walkRev = document.querySelector("#walkRev")
 const climb = document.querySelector("#Climb")
 const flag = document.querySelector("#flag")
+const winImg = document.querySelector("#win")
+let walkSound = document.querySelector("#walk_music")
+let ladderSound = document.querySelector("#ladder_music")
+let bgm = document.querySelector("#bgm")
+let victorySound = document.querySelector("#victory_music")
 let win = false; 
 
 canvas.height = innerHeight-2;
@@ -134,12 +139,17 @@ function animate(){
 
     if(keys.right.pressed == true){
         player.speed.x = 5;
+        walkSound.play();
         player.update(walk1);
     } 
     else if(keys.left.pressed == true){
         player.speed.x = -5
+        walkSound.play();
         player.update(walkRev);
-    }else player.speed.x = 0;
+    }else{
+        player.speed.x = 0;
+        walkSound.pause();
+    }
     platforms.forEach(platform => {
     if (player.position.x + player.width > platform.position.x &&
   player.position.x < platform.position.x + platform.width &&
@@ -178,6 +188,7 @@ walls.forEach(wall => {
         g=0;
         if(keys.up.pressed){
             player.speed.y = -5;
+            ladderSound.play();
             player.update(climb);
             player.position.x = ladders[i].position.x+25;
         }
@@ -193,6 +204,9 @@ walls.forEach(wall => {
 }
     if(win == false){
     if(player.position.x >= flag1.position.x && player.position.y >= flag1.position.y){
+        player.update(winImg);
+        victorySound.play();
+        bgm.pause();
         window.alert("You win!")
         win = true;
         window.location.reload();
