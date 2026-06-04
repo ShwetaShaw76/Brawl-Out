@@ -66,6 +66,23 @@ buttons.quit.draw();
 buttons.git.draw();
 c.drawImage(git,buttons.git.position.x+13,buttons.git.position.y,100,90)
 
+c.font = "50px 'Cinzel'";
+c.fillStyle = "#F5E6B3";
+c.strokeStyle = "#3B2A1A";
+c.lineWidth = 4;
+c.strokeText("Brawl Out",canvas.width/2-110,canvas.height/2-200);
+c.fillText("Brawl Out",canvas.width/2-110,canvas.height/2-200);
+
+c.fillStyle = "#c4f5b3";
+c.strokeStyle = "#1a5e1a";
+c.strokeText("START",canvas.width/2-70,canvas.height/2-90);
+c.fillText("START",canvas.width/2-70,canvas.height/2-90);
+
+c.fillStyle = "#f5b3b3";
+c.strokeStyle = "#5e1a1a";
+c.strokeText("QUIT",canvas.width/2-50,canvas.height/2+40);
+c.fillText("QUIT",canvas.width/2-50,canvas.height/2+40);
+
 const musicButton = new MusicButton({x:canvas.width/2-150,y:canvas.height/2+90});
 musicButton.draw();
 musicButton.onClick = function(){
