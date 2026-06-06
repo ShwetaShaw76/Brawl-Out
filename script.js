@@ -211,11 +211,11 @@ walls.forEach(wall => {
         win = true;
         window.location.reload();
     }
-    // else if(player.position.y >= canvas.height-100){
-    //     window.alert("you lose!!")
-    //     win = true;
-    //     window.location.reload();
-    // }
+    else if(player.position.y >= canvas.height-120){
+        window.alert("you lose!!")
+        win = true;
+        window.location.reload();
+    }
     }
 }
 
