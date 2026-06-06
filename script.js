@@ -100,18 +100,18 @@ class ladderv{
 const player = new Character({x: 0, y: window.innerHeight - 150});
 
 const platforms = [
-    new platform({ x: window.innerWidth * 0.12-20,y: window.innerHeight * 0.24+100}),
+    new platform({ x: window.innerWidth * 0.12,y: window.innerHeight * 0.24}),
     new platform({
-        x: window.innerWidth * 0.47-100,
-        y: window.innerHeight * 0.46+150
+        x: window.innerWidth * 0.47,
+        y: window.innerHeight * 0.46
     }),
     new platform({
         x: 0,
         y: window.innerHeight - 50
     }),
     new platform({
-        x: window.innerWidth * 0.63-100,
-        y: window.innerHeight * 0.07+40
+        x: window.innerWidth * 0.63,
+        y: window.innerHeight * 0.07
     }),
     new platform({
         x: window.innerWidth - 250,
