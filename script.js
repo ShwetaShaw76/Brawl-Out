@@ -106,16 +106,16 @@ const platforms = [
         y: window.innerHeight * 0.66
     }),
     new platform({
-        x: 0,
-        y: window.innerHeight - 50
+    x: 0,
+    y: window.innerHeight * 0.93
     }),
     new platform({
         x: window.innerWidth * 0.57,
         y: window.innerHeight * 0.12
     }),
     new platform({
-        x: window.innerWidth - 250,
-        y: window.innerHeight - 50
+    x: window.innerWidth * 0.83,
+    y: window.innerHeight * 0.93
     })
 ];
 
