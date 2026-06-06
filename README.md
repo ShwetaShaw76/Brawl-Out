@@ -19,6 +19,8 @@
 
 - This game can only be played on pc for now
 
+- This game contains background sound and other sounds(like walking and climbing) so I recommend turning down you rvolume before playing the game
+
 ## Message by Creator
 
 - I hope you enjoy playing this game as this is my first game created through HTML canvas
