@@ -121,19 +121,19 @@ const platforms = [
 
 const walls = [
     new wallv({
-        x: window.innerWidth - 340,
-        y: window.innerHeight * 0.32 + 100
-    })
+    x: window.innerWidth * 0.79,
+    y: window.innerHeight * 0.42
+})
 ];
 
 const ladders = [
     new ladderv({
-        x: window.innerWidth * 0.20-50,
-        y: window.innerHeight * 0.26+90
+        x: window.innerWidth * 0.175,
+        y: window.innerHeight * 0.4
     }),
     new ladderv({
-        x: window.innerWidth * 0.67 - 130,
-        y: platforms[2].position.y - 580
+        x: window.innerWidth * 0.58,
+        y: window.innerHeight * 0.12
     })
 ];
 
