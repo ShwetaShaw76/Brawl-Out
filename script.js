@@ -65,8 +65,8 @@ class Character{
 class platform{
     constructor(position){
         this.position = position;
-        this.height = 50;
-        this.width = 400;
+        this.height = window.innerHeight * 0.07;
+        this.width = window.innerWidth * 0.25;
     }
     draw(){
         c.drawImage(plts,this.position.x,this.position.y,this.width,this.height)
@@ -76,8 +76,8 @@ class platform{
 class wallv{
     constructor(position){
         this.position = position;
-        this.height = 400;
-        this.width = 100;
+        this.height = window.innerHeight * 0.60;
+        this.width = window.innerWidth * 0.05; 
     }
 
     draw(){
@@ -88,8 +88,8 @@ class wallv{
 class ladderv{
     constructor(position){
         this.position = position;
-        this.height = 400;
-        this.width = 100;
+        this.height = window.innerHeight * 0.55;
+        this.width = window.innerWidth * 0.05;
     }
 
     draw(){
