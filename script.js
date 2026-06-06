@@ -251,7 +251,8 @@ walls.forEach(wall => {
         window.location.reload();
     }
     
-    else if(player.position.y >= canvas.height|| player.position.x >= canvas.width || player.position.x + player.width <= 0){ 
+    else if(player.position.y >= window.innerHeight*0.83|| player.position.x >= canvas.width 
+        || player.position.x + player.width <= 0){ 
     bgm.pause();
     win = true;
     window.alert("You lose!");
