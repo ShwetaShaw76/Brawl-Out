@@ -138,8 +138,8 @@ const ladders = [
 ];
 
 const flag1 = new Flag({
-    x: window.innerWidth - 60,
-    y: window.innerHeight - 150
+    x: window.innerWidth * 0.95,
+    y: window.innerHeight * 0.79
 });
 
 const keys={
