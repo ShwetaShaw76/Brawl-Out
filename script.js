@@ -144,10 +144,12 @@ const flag1 = new Flag({
 
 const keys={
     right:{
-        pressed:false
+        pressed:false,
+        locked:false
     },
     left:{
-        pressed:false
+        pressed:false,
+        locked:false
     },
     up:{
         pressed:false
@@ -222,7 +224,9 @@ walls.forEach(wall => {
         player.position.x < ladders[i].position.x + ladders[i].width &&
         player.position.y + player.height > ladders[i].position.y &&
         player.position.y < ladders[i].position.y + ladders[i].height
-    ){
+    ){  
+        keys.left.locked = true;
+        keys.right.locked = true;
         player.speed.y = 0;
         g=0;
         if(keys.up.pressed){
@@ -238,6 +242,8 @@ walls.forEach(wall => {
         }
     }
     else{
+        keys.left.locked = false;
+        keys.right.locked = false;
         g=0.5;
     }
 }
@@ -265,14 +271,17 @@ walls.forEach(wall => {
 animate()
 
 addEventListener('keydown',({keyCode})=>{
-    console.log(keyCode)
 
     switch(keyCode){
         case 37:
-            keys.left.pressed = true;
+            if(!keys.left.locked){
+                keys.left.pressed = true;
+            }
             break;
         case 39:
-            keys.right.pressed = true;
+            if(!keys.right.locked){
+                keys.right.pressed = true;
+            }
             break;
         case 38:
             keys.up.pressed = true;
@@ -284,7 +293,6 @@ addEventListener('keydown',({keyCode})=>{
 })
 
 addEventListener('keyup',({keyCode})=>{
-    console.log(keyCode)
 
     switch(keyCode){
         case 37:
