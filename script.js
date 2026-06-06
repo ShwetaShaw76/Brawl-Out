@@ -97,11 +97,50 @@ class ladderv{
     }
 }
 
-const player = new Character({x:0,y:500})
-const platforms = [new platform({x:150,y:260}),new platform({x:600,y:500}),new platform({x:0,y:window.innerHeight-50}),new platform({x:800,y:80}),new platform({x:window.innerWidth-250,y:window.innerHeight-50})]
-const walls = [new wallv({x:1200,y:350})]
-const ladders = [new ladderv({x:250,y:280}),new ladderv({x:850,y:platforms[2].position.y-580})]
-const flag1 = new Flag({x:window.innerWidth-60,y:window.innerHeight-150})
+const player = new Character({x: 0, y: window.innerHeight - 150});
+
+const platforms = [
+    new platform({ x: window.innerWidth * 0.12-20,y: window.innerHeight * 0.24+100}),
+    new platform({
+        x: window.innerWidth * 0.47-100,
+        y: window.innerHeight * 0.46+150
+    }),
+    new platform({
+        x: 0,
+        y: window.innerHeight - 50
+    }),
+    new platform({
+        x: window.innerWidth * 0.63-100,
+        y: window.innerHeight * 0.07+40
+    }),
+    new platform({
+        x: window.innerWidth - 250,
+        y: window.innerHeight - 50
+    })
+];
+
+const walls = [
+    new wallv({
+        x: window.innerWidth - 340,
+        y: window.innerHeight * 0.32 + 100
+    })
+];
+
+const ladders = [
+    new ladderv({
+        x: window.innerWidth * 0.20-50,
+        y: window.innerHeight * 0.26+90
+    }),
+    new ladderv({
+        x: window.innerWidth * 0.67 - 130,
+        y: platforms[2].position.y - 580
+    })
+];
+
+const flag1 = new Flag({
+    x: window.innerWidth - 60,
+    y: window.innerHeight - 150
+});
 
 const keys={
     right:{
@@ -211,11 +250,11 @@ walls.forEach(wall => {
         win = true;
         window.location.reload();
     }
-    else if(player.position.y >= canvas.height-120){
-        window.alert("you lose!!")
-        win = true;
-        window.location.reload();
-    }
+    // else if(player.position.y >= canvas.height-120){
+    //     window.alert("you lose!!")
+    //     win = true;
+    //     window.location.reload();
+    // }
     }
 }
 
