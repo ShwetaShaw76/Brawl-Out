@@ -219,11 +219,11 @@ walls.forEach(wall => {
         player.position.x = wall.position.x + wall.width;
     }
 })
-    for(let i = 0; i < ladders.length; i++){
-    if(player.position.x + player.width > ladders[i].position.x &&
-        player.position.x < ladders[i].position.x + ladders[i].width &&
-        player.position.y + player.height > ladders[i].position.y &&
-        player.position.y < ladders[i].position.y + ladders[i].height
+    ladders.forEach(ladder => {
+    if(player.position.x + player.width > ladder.position.x &&
+        player.position.x < ladder.position.x + ladder.width &&
+        player.position.y + player.height > ladder.position.y &&
+        player.position.y < ladder.position.y + ladder.height
     ){  
         keys.left.locked = true;
         keys.right.locked = true;
@@ -233,12 +233,12 @@ walls.forEach(wall => {
             player.speed.y = -5;
             ladderSound.play();
             player.update(climb);
-            player.position.x = ladders[i].position.x+25;
+            player.position.x = ladder.position.x+25;
         }
         if(keys.down.pressed){
             player.speed.y=5;
             player.update(climb);
-            player.position.x = ladders[i].position.x+25;
+            player.position.x = ladder.position.x+25;
         }
     }
     else{
@@ -246,7 +246,7 @@ walls.forEach(wall => {
         keys.right.locked = false;
         g=0.5;
     }
-}
+})
     if(win == false){
     if(player.position.x >= flag1.position.x && player.position.y >= flag1.position.y-flag1.height){
         player.update(winImg);
