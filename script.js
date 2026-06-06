@@ -250,11 +250,13 @@ walls.forEach(wall => {
         win = true;
         window.location.reload();
     }
-    // else if(player.position.y >= canvas.height-120){
-    //     window.alert("you lose!!")
-    //     win = true;
-    //     window.location.reload();
-    // }
+    
+    else if(player.position.y >= canvas.height|| player.position.x >= canvas.width || player.position.x + player.width <= 0){ 
+    bgm.pause();
+    win = true;
+    window.alert("You lose!");
+    window.location.reload();
+    }
     }
 }
 
