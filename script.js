@@ -23,10 +23,10 @@ canvas.width = innerWidth-2;
 let g=0.5;
 
 class Flag{
-    constructor(position){
-        this.position = position;
-        this.height =100;
-        this.width = 50;
+    constructor(position) {
+    this.position = position;
+    this.height = window.innerHeight * 0.13;
+    this.width = window.innerWidth * 0.035;
     }
     draw(){
         c.drawImage(flag,this.position.x,this.position.y,this.width,this.height)
@@ -139,7 +139,7 @@ const ladders = [
 
 const flag1 = new Flag({
     x: window.innerWidth * 0.95,
-    y: window.innerHeight * 0.79
+    y: window.innerHeight * 0.8
 });
 
 const keys={
@@ -242,7 +242,7 @@ walls.forEach(wall => {
     }
 }
     if(win == false){
-    if(player.position.x >= flag1.position.x && player.position.y >= flag1.position.y){
+    if(player.position.x >= flag1.position.x && player.position.y >= flag1.position.y-flag1.height){
         player.update(winImg);
         victorySound.play();
         bgm.pause();
