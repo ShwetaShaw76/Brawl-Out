@@ -204,20 +204,28 @@ walls.forEach(wall => {
         player.position.x < wall.position.x + wall.width &&
         player.position.y + player.height > wall.position.y &&
         player.position.y < wall.position.y + wall.height
-    )
+    ){
     if(player.speed.x > 0){
         player.speed.x = 0;
         player.position.x = wall.position.x - player.width;
     }
+}
     else if(player.position.x + player.width > wall.position.x + wall.width &&
         player.position.x < wall.position.x + wall.width &&
         player.position.y + player.height > wall.position.y &&
-        player.position.y < wall.position.y + wall.height
-    )
+        player.position.y < wall.position.y + wall.height){
     if(player.speed.x < 0){
         player.speed.x = 0;
         player.position.x = wall.position.x + wall.width;
     }
+}
+    else if(player.position.x + player.width > wall.position.x &&
+        player.position.x < wall.position.x + wall.width &&
+        player.position.y + player.height <= wall.position.y + 20 &&
+        player.position.y + player.height + player.speed.y >= wall.position.y) {
+        player.speed.y = 0;
+        player.position.y = wall.position.y - player.height;
+}
 })
     ladders.forEach(ladder => {
     if(player.position.x + player.width > ladder.position.x &&
